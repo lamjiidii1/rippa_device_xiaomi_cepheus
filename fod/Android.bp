@@ -16,8 +16,8 @@
 cc_binary {
     relative_install_path: "hw",
     defaults: ["hidl_defaults"],
-    name: "vendor.lineage.biometrics.fingerprint.inscreen@1.0-service.xiaomi_cepheus",
-    init_rc: ["vendor.lineage.biometrics.fingerprint.inscreen@1.0-service.xiaomi_cepheus.rc"],
+    name: "vendor.lineage.biometrics.fingerprint.inscreen@1.0-service.cepheus",
+    init_rc: ["vendor.lineage.biometrics.fingerprint.inscreen@1.0-service.cepheus.rc"],
     srcs: [
 	"service.cpp",
         "FingerprintInscreen.cpp",
@@ -26,6 +26,7 @@ cc_binary {
     shared_libs: [
         "libbase",
         "libhardware",
+        "libhardware_legacy",
         "libhidlbase",
         "liblog",
         "libutils",
@@ -35,12 +36,9 @@ cc_binary {
 }
 
 cc_library_static {
-    name: "libfod_extension.xiaomi_cepheus",
+    name: "libfod_extension.cepheus",
     srcs: ["fod_extension.cpp"],
     include_dirs: [
         "frameworks/native/services/surfaceflinger/CompositionEngine/include"
-    ],
-    header_libs: [
-        "qti_kernel_headers",
     ],
 }

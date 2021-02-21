@@ -53,7 +53,7 @@ public:
     Return<void> setCallback(const sp<IFingerprintInscreenCallback>& callback) override;
 
 private:
-    bool mFodCircleVisible;
+  private:
     sp<IXiaomiFingerprint> xiaomiFingerprintService;
 
     std::mutex mCallbackLock;

@@ -13,18 +13,38 @@
 // limitations under the License.
 
 cc_binary {
-    relative_install_path: "hw",
+    name: "android.hardware.light@2.0-service.cepheus",
     defaults: ["hidl_defaults"],
-    name: "android.hardware.light@2.0-service.xiaomi_msmnile",
-    init_rc: ["android.hardware.light@2.0-service.xiaomi_msmnile.rc"],
-    srcs: ["service.cpp", "Light.cpp"],
+    init_rc: ["hidl/android.hardware.light@2.0-service.raphael.rc"],
+    srcs: [
+        "hidl/service.cpp",
+        "hidl/Light.cpp",
+    ],
+    shared_libs: [
+        "libbase",
+        "libhidlbase",
+        "libutils",
+        "android.hardware.light@2.0",
+    ],
+    relative_install_path: "hw",
+    vendor: true,
+}
+
+cc_binary {
+    name: "android.hardware.lights-service.raphael",
+    relative_install_path: "hw",
+    init_rc: ["aidl/android.hardware.lights.raphael.rc"],
+    vintf_fragments: ["aidl/android.hardware.lights.raphael.xml"],
     vendor: true,
     shared_libs: [
-        "android.hardware.light@2.0",
         "libbase",
-        "libhardware",
-        "libhidlbase",
         "liblog",
-        "libutils",
+        "libhardware",
+        "libbinder_ndk",
+        "android.hardware.light-ndk_platform",
+    ],
+    srcs: [
+        "aidl/Lights.cpp",
+        "aidl/main.cpp",
     ],
 }
